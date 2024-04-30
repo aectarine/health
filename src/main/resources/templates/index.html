@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KSD's Health Club</title>
+</head>
+<body>
+<th:block th:if="${account == null}">
+    <a href="/sign/sign-up">로그인</a>
+    <a href="/sign/sign-in">회원가입</a>
+</th:block>
+<th:block th:unless="${account == null}">
+    <p th:text="'안녕하세요. ' + ${account} + '님'">안녕하세요. 손님</p>
+    <a href="/sign/sign-out">로그아웃</a>
+</th:block>
+<a href="/health/health">핼스 바로가기</a>
+</body>
+</html>
