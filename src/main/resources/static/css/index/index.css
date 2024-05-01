@@ -1,5 +1,6 @@
 * {
     border: none;
+    font-size: 18px;
 }
 
 body {
@@ -9,4 +10,8 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 20% 20%;
+}
+
+p {
+    color: #D2D2D2;
 }
