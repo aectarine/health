@@ -1,0 +1,12 @@
+* {
+    border: none;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'robot', sans-serif;
+    background-image: url("/static/imgs/health/women_health.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 20% 20%;
+}

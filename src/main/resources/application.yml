@@ -16,6 +16,8 @@ spring:
   thymeleaf:
     cache: false
     prefix: file:src/main/resources/templates/
+  mvc:
+    static-path-pattern: /static/**
   datasource:
     url: jdbc:postgresql://localhost:5432/health
     hikari:
