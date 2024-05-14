@@ -16,20 +16,29 @@ repositories {
 }
 
 dependencies {
-	// 기본
+	// 컴파일 및 실행 시 클래스패스에 추가되며, 프로덕션 코드에서 필요한 라이브러리 및 모듈을 지정
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	// 유틸
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
 	implementation 'org.springframework.security:spring-security-crypto:5.7.1'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.3'
+
+	// 런타임 시에만 필요한 라이브러리를 지정합니다. 컴파일 시에는 클래스패스에 추가되지 않지만, 런타임 시에는 필요할 수 있습니다.
 	runtimeOnly group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '3.2.5'
-	runtimeOnly group: 'org.postgresql', name: 'postgresql', version: '42.7.3'
+
+	// 컴파일 시에만 필요한 라이브러리를 지정합니다. 런타임 시에는 클래스패스에 추가되지 않습니다.
 	compileOnly 'org.projectlombok:lombok'
+
+	// 컴파일 시에만 필요한 애노테이션 프로세서를 지정합니다. 런타임 시에는 사용되지 않습니다.
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// 테스트 코드에서만 사용되는 라이브러리를 지정합니다.
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+// gradle build 에러의 원인으로 test 코드로 인해 에러가 발생한다
+// gradle의 build 옵션에서 -x test를 사용하여 해결한다
 tasks.named('test') {
 	useJUnitPlatform()
 }

@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/health
+    url: jdbc:postgresql://localhost:5432/health-dev
     hikari:
       maximum-pool-size: 4
     username: ksd

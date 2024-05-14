@@ -7,7 +7,7 @@
 body {
     font-size: 14px;
     font-family: 'robot', sans-serif;
-    background-image: url("/static/imgs/health/health_room.jpeg");
+    background-image: url("/imgs/health/health_room.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 20% 20%;
@@ -68,13 +68,13 @@ body {
 #sign-in-form input[type="checkbox"] + label {
     cursor: pointer;
     padding-left: 26px;
-    background-image: url("/static/imgs/checkbox/checkbox.png");
+    background-image: url("/imgs/checkbox/checkbox.png");
     background-repeat: no-repeat;
     background-size: contain;
 }
 
 #sign-in-form input[type="checkbox"]:checked + label {
-    background-image: url("/static/imgs/checkbox/checkbox-active.png");
+    background-image: url("/imgs/checkbox/checkbox-active.png");
     background-repeat: no-repeat;
     background-size: contain;
 }

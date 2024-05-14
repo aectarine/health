@@ -2,14 +2,6 @@ spring:
   devtools:
     livereload:
       enabled: true
-  web:
-    resources:
-      static-locations: file:src/main/resources/static/
-  thymeleaf:
-    cache: false
-    prefix: file:src/main/resources/templates/
-  mvc:
-    static-path-pattern: /static/**
   datasource:
     url: jdbc:postgresql://localhost:5432/health-dev
     hikari:
