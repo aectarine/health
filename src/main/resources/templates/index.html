@@ -6,14 +6,33 @@
     <link rel="stylesheet" href="/static/css/index/index.css">
 </head>
 <body>
-<th:block th:if="${account == null}">
-    <a href="/sign/sign-up">로그인</a>
-    <a href="/sign/sign-in">회원가입</a>
-</th:block>
-<th:block th:unless="${account == null}">
-    <p th:text="'안녕하세요. ' + ${account} + '님'">안녕하세요. 손님</p>
-    <a href="/sign/sign-out">로그아웃</a>
-    <a href="/health/health">핼스 바로가기</a>
-</th:block>
+<header>
+    <nav>
+        <div id="menu">
+            <th:block th:unless="${account == null}">
+                <a href="/health/health">핼스 바로가기</a>
+            </th:block>
+        </div>
+        <div id="info">
+            <th:block th:if="${account == null}">
+                <a href="/sign/sign-in">로그인</a>
+                <a href="/sign/sign-up">회원가입</a>
+            </th:block>
+            <th:block th:unless="${account == null}">
+                <p th:text="'안녕하세요. ' + ${account} + '님'">안녕하세요. 손님</p>
+                <a href="/sign/sign-out">로그아웃</a>
+            </th:block>
+        </div>
+    </nav>
+</header>
+<main>
+
+</main>
+<aside>
+
+</aside>
+<footer></footer>
+
+
 </body>
 </html>

@@ -2,11 +2,13 @@ package com.ksd.health.repository;
 
 import com.ksd.health.model.Member;
 import jakarta.persistence.EntityManager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Repository
 public class SignRepository implements MemberRepository {
     private final EntityManager em;
@@ -32,7 +34,7 @@ public class SignRepository implements MemberRepository {
         List<Member> members = em.createQuery("select m from Member m where m.account = :account", Member.class)
                 .setParameter("account", account)
                 .getResultList();
-        return members.parallelStream().findAny();
+        return members.stream().findAny();
     }
 
     @Override

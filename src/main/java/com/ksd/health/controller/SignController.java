@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Slf4j
 @RequestMapping("/sign")
 @Controller
@@ -22,6 +21,7 @@ public class SignController {
 
     private MemberService memberService;
     private PasswordEncoder passwordEncoder;
+    private HttpSession httpSession;
 
     @Autowired
     public SignController(MemberService memberService, PasswordEncoder passwordEncoder) {
@@ -29,18 +29,18 @@ public class SignController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/sign-up")
-    private String signUpPage() {
-        return "sign/sign-up";
+    @GetMapping("/sign-in")
+    private String signInPage() {
+        return "sign/sign-in";
     }
 
-    @PostMapping("/sign-up")
-    private String signUp(HttpServletRequest req, MemberSignUpForm memberSignUpForm) {
-        Member signUpMember = memberService.signUp(memberSignUpForm.getAccount(), memberSignUpForm.getPassword());
-        if (signUpMember != null) {
-            HttpSession session = req.getSession();
-            session.setAttribute("signUpMember", signUpMember);
-            session.setMaxInactiveInterval(60 * 30);
+    @PostMapping("/sign-in")
+    private String signUp(HttpServletRequest req, MemberSignInForm memberSignInForm) {
+        Member signIpMember = memberService.signIn(memberSignInForm.getAccount(), memberSignInForm.getPassword());
+        if (signIpMember != null) {
+            httpSession = req.getSession();
+            httpSession.setAttribute("signInMember", signIpMember);
+            httpSession.setMaxInactiveInterval(60 * 30);
         }
         return "redirect:/";
     }
@@ -54,20 +54,14 @@ public class SignController {
         return "redirect:/";
     }
 
-    @GetMapping("/sign-in")
-    private String signIn() {
-        return "sign/sign-in";
+    @GetMapping("/sign-up")
+    private String signUp() {
+        return "sign/sign-up";
     }
 
     @PostMapping("/create")
-    private String create(MemberSignInForm memberSignInForm) {
-        Member member = new Member();
-        member.setAccount(memberSignInForm.getAccount());
-        member.setPassword(passwordEncoder.encode(memberSignInForm.getPassword()));
-        member.setName(memberSignInForm.getName());
-        member.setEmail(memberSignInForm.getEmail());
-        member.setPhone(memberSignInForm.getPhone());
-        memberService.create(member);
-        return "redirect:/";
+    private String create(MemberSignUpForm memberSignUpForm) {
+        memberService.create(memberSignUpForm);
+        return "index";
     }
 }

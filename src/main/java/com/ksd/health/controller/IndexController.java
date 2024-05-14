@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class IndexController {
 
     @GetMapping("/")
-    private String index(@SessionAttribute(name = "signUpMember", required = false) Member signUpMember, Model model) {
-        if (signUpMember != null) {
-            model.addAttribute("account", signUpMember.getName());
+    private String index(@SessionAttribute(name = "signInMember", required = false) Member signInMember, Model model) {
+        if (signInMember != null) {
+            model.addAttribute("account", signInMember.getName());
         }
         return "index";
     }

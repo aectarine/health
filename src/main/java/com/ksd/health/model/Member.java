@@ -1,6 +1,10 @@
 package com.ksd.health.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity(name = "Member")
 public class Member {
@@ -18,6 +22,12 @@ public class Member {
     private String email;
     @Column
     private String phone;
+    @CreationTimestamp
+    @Column
+    private LocalDateTime inserted;
+    @UpdateTimestamp
+    @Column
+    private LocalDateTime updated;
 
     public Long getSeq() {
         return seq;
@@ -67,8 +77,24 @@ public class Member {
         this.phone = phone;
     }
 
+    public LocalDateTime getInserted() {
+        return inserted;
+    }
+
+    public void setInserted(LocalDateTime inserted) {
+        this.inserted = inserted;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
+
     @Override
     public String toString() {
-        return "Member{" + "seq=" + seq + ", account='" + account + '\'' + ", password='" + password + '\'' + ", name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + '}';
+        return "Member{" + "seq=" + seq + ", account='" + account + '\'' + ", password='" + password + '\'' + ", name='" + name + '\'' + ", email='" + email + '\'' + ", phone='" + phone + '\'' + ", inserted=" + inserted + ", updated=" + updated + '}';
     }
 }
