@@ -1,33 +1,14 @@
-package com.ksd.health.model;
+package com.ksd.health.vo.member;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import com.ksd.health.model.Member;
 
-import java.time.LocalDateTime;
-
-@Entity(name = "HealthBoard")
-public class HealthBoard {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class HealthBoardForm {
     private Long seq;
-    @Column
     private String title;
-    @Column
     private String video;
-    @Column
     private Long views;
-    @Column
     private Long recommend;
-    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_seq")
     private Member member;
-    @CreationTimestamp
-    @Column
-    private LocalDateTime inserted;
-    @UpdateTimestamp
-    @Column
-    private LocalDateTime updated;
 
     public Long getSeq() {
         return seq;
@@ -77,20 +58,8 @@ public class HealthBoard {
         this.member = member;
     }
 
-    public LocalDateTime getInserted() {
-        return inserted;
+    @Override
+    public String toString() {
+        return "HealthBoardForm{" + "seq=" + seq + ", title='" + title + '\'' + ", video='" + video + '\'' + ", views=" + views + ", recommend=" + recommend + ", member=" + member + '}';
     }
-
-    public void setInserted(LocalDateTime inserted) {
-        this.inserted = inserted;
-    }
-
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
-
 }
