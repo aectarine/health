@@ -1,12 +1,15 @@
 package com.ksd.health.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "Member")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Member {
 
     @Id
@@ -22,6 +25,8 @@ public class Member {
     private String email;
     @Column
     private String phone;
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<HealthBoard> list;
     @CreationTimestamp
     @Column
     private LocalDateTime inserted;

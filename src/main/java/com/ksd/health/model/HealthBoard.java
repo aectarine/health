@@ -1,5 +1,6 @@
 package com.ksd.health.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity(name = "HealthBoard")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class HealthBoard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

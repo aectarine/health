@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Slf4j
 @Transactional
 @Service
@@ -27,10 +29,16 @@ public class HealthBoardService {
 
     HealthBoard settingHealthBoard(HealthBoardForm healthBoardForm) {
         HealthBoard healthBoard = new HealthBoard();
-        healthBoard.setTitle(healthBoard.getTitle());
-        healthBoard.setVideo(healthBoard.getVideo());
-        healthBoard.setViews(healthBoard.getViews());
+        healthBoard.setTitle(healthBoardForm.getTitle());
+        healthBoard.setVideo(healthBoardForm.getVideo());
+        healthBoard.setViews(healthBoardForm.getViews());
         healthBoard.setRecommend(healthBoardForm.getRecommend());
+        healthBoard.setMember(healthBoardForm.getMember());
         return healthBoard;
+    }
+
+    public List<HealthBoard> list() {
+        List<HealthBoard> list = healthBoardRepository.findAll();
+        return list;
     }
 }

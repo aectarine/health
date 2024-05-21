@@ -2,6 +2,7 @@ package com.ksd.health.repository;
 
 import com.ksd.health.model.HealthBoard;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,8 @@ public class HealthBoardRepository implements BoardRepository<HealthBoard> {
 
     @Override
     public List<HealthBoard> findAll() {
-        return null;
+        String jpql = "SELECT hb FROM HealthBoard hb";
+        TypedQuery<HealthBoard> list = em.createQuery(jpql, HealthBoard.class);
+        return list.getResultList();
     }
 }
